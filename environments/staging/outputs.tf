@@ -1,4 +1,4 @@
 # output the created policy id
 output "active_version" {
-  value = resource.akamai_cloudlets_policy_activation.pr_staging.version
+  value = var.policy_version == null ? data.tfe_outputs.policy.values["latest_version"] : var.policy_version
 }
