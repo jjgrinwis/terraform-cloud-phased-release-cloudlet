@@ -74,3 +74,9 @@ resource "akamai_cloudlets_policy" "phased_release" {
   match_rules = templatefile("${path.root}/rules/rules.tftpl", { to_deta_match_value = jsonencode(var.to_deta_match_value) })
 }
 
+# when using file() terraform is to quick so not returning the latest version
+# let's do a lookup after modifying it and use that version as the output
+data "akamai_cloudlets_policy" "pr_policy" {
+  policy_id = resource.akamai_cloudlets_policy.phased_release.id
+}
+
