@@ -12,7 +12,7 @@ terraform {
 # make sure to share the output vars from this workspace with other workspace(s)
 data "tfe_outputs" "policy" {
   organization = "grinwis-com"
-  workspace    = "phased-release-cloudlet-policy"
+  workspace    = "phased-release"
 }
 
 # now activate this policy on staging using latest policy version by default.
