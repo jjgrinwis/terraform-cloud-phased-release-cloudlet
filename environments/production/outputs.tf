@@ -1,3 +1,3 @@
 output "active_version" {
-  value = resource.akamai_cloudlets_policy_activation.pr_production.version
+  value = var.policy_version == null ? nonsensitive(data.tfe_outputs.policy.values["latest_version"]) : var.policy_version
 }
