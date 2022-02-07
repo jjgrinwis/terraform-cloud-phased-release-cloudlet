@@ -31,14 +31,14 @@ terraform {
 # make sure to share the output vars from this workspace with other workspace(s)
 data "tfe_outputs" "staging" {
   organization = "grinwis-com"
-  workspace    = "phased-release"
+  workspace    = "phased-release-cloudlet-policy"
 }
 
 # now activate this policy on production using latest policy version by default.
 resource "akamai_cloudlets_policy_activation" "pr_production" {
   policy_id = nonsensitive(data.tfe_outputs.staging.values["policy_id"])
   network   = "production"
-  version   = var.policy_version == null ? nonsensitive(data.tfe_outputs.staging.values["active_version"]) : var.policy_version
+  version   = var.policy_version == null ? nonsensitive(data.tfe_outputs.staging.values["latest_version"]) : var.policy_version
   # version               = resource.akamai_cloudlets_policy.phased_release.version
   associated_properties = var.hostnames
 }
