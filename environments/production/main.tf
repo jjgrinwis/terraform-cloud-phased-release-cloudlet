@@ -16,7 +16,7 @@ data "tfe_outputs" "policy" {
 
 # now activate this policy on production using latest policy version by default.
 resource "akamai_cloudlets_policy_activation" "pr_production" {
-  policy_id = data.tfe_outputs.policy.values["policy_id"]
+  policy_id = nonsensitive(data.tfe_outputs.policy.values["policy_id"])
   network   = "production"
   version   = var.policy_version == null ? nonsensitive(data.tfe_outputs.policy.values["latest_version"]) : var.policy_version
   # version               = resource.akamai_cloudlets_policy.phased_release.version
