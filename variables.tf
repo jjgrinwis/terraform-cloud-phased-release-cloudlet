@@ -12,10 +12,6 @@ variable "policy_name" {
   type        = string
 }
 
-variable "group_name" {
-  description = "Akamai group to create this resource in"
-  type        = string
-}
 
 variable "policy_version" {
   description = "By default latest version will be used, can be overwritten using this variable"
