@@ -8,6 +8,18 @@ terraform {
   }
 }
 
+# we used this part to reinitialize the remote .tfstate
+# we used 'terraform import akamai_cloudlets_policy_activation.pr_staging pr_grinwis'
+terraform {
+  backend "remote" {
+    organization = "grinwis-com"
+
+    workspaces {
+      name = "phased-release-cloudlet-staging"
+    }
+  }
+}
+
 # we use information from our staging setup but we only need the policy id and optionally the latest version
 # make sure to share the output vars from this workspace with other workspace(s)
 data "tfe_outputs" "policy" {
