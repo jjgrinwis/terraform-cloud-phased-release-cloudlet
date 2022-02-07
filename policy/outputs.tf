@@ -5,6 +5,7 @@ output "id" {
 
 # little trick to lookup the latest version
 output "latest_version" {
-  value = split(":", data.akamai_cloudlets_policy.pr_policy.id)[1]
+  value     = split(":", data.akamai_cloudlets_policy.pr_policy.id)[1]
+  sensitive = false
 }
 
