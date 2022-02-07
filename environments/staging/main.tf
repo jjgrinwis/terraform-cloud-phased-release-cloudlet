@@ -19,6 +19,6 @@ data "tfe_outputs" "policy" {
 resource "akamai_cloudlets_policy_activation" "pr_staging" {
   policy_id             = data.tfe_outputs.policy.values["id"]
   network               = "staging"
-  version               = var.policy_version == null ? split(":", data.akamai_cloudlets_policy.pr_policy.id)[1] : var.policy_version
+  version               = var.policy_version == null ? data.tfe_outputs.policy.values["latest_version"] : var.policy_version
   associated_properties = var.hostnames
 }
