@@ -7,4 +7,3 @@ output "latest_version" {
   value = resource.akamai_cloudlets_policy.phased_release.version
 }
 
-

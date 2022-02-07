@@ -20,7 +20,7 @@ terraform {
     organization = "grinwis-com"
 
     workspaces {
-      name = "phased-release-cloudlet"
+      name = "phased-release-cloudlet-policy"
     }
   }
 }
